@@ -4,6 +4,10 @@ class Main {
     this.width=width
     this.height=height
     this.obstacles=[]
+    function sortObstacles()
+    {
+
+    }
   }
 }
 class Obstacle {
@@ -13,6 +17,5 @@ class Obstacle {
     this.height=height
     this.x=x
     this.y=y
-
   }
 }
