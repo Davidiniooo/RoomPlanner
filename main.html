@@ -1,19 +1,20 @@
+<!DOCTYPE html>
 <html>
-
   <head>
-    <title>
-      Room Planner
-    </title>
+    <title>Room Planner</title>
+    <!--meta-->
+    <meta charset="utf-8" />
     <!--Libaries-->
     <script src="js/libs/jquery.js"></script>
-    <!--Own Code-->
-    <script src="js/baseclasses.js"></script>
-    <script src="js/functions.js>"></script>
+    <!--CSS-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 
   </head>
 
-
-  <body onload="startPlanner()">
-
+  <body>
+      <canvas id="mainscreen" width="500" height="500"></canvas>
+      <button type="button" id="AddObstacle" onclick="addObstacle()">Add Obstacle</button>
+      <button type="button" id="ShowCtx" onclick="drawTestRect()">Show</button>
+      <script src="js/main.js"></script>
   </body>
 </html>

@@ -1,3 +1,0 @@
-function startPlanner(){
-  ApplicationArea.start();
-}
