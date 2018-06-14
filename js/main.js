@@ -2,12 +2,13 @@
 var canvas = document.getElementById("mainscreen");
 var ctx = canvas.getContext("2d");
 
+var obstacles = [];
 function drawMainScreen(){
-  ctx.beginPath();
   ctx.fill();
-
+  ctx.closePath();
 }
-function addObstacle(){
+function addObstacle(x,y,w,h){
   ctx.beginPath();
-  ctx.rect(20, 40, 50, 50);
+  var Obstacle = new Obstacle(x,y,w,h);
+  ctx.rect(Obstacle.x,Obstacle.y,Obstacle.w,Obstacle.h);
 }
