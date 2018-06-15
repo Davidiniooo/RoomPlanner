@@ -13,9 +13,17 @@
   </head>
 
   <body>
-      <canvas id="mainscreen" width="500" height="500"></canvas>
+      <h1>RoomPlanner 0.1</h1>
+      <h4>Made by Davidiniooo</h4>
+      <input type="number" id="Xinput"></input>
+      <input type="number" id="Yinput"></input>
+      <input type="number" id="Hinput"></input>
+      <input type="number" id="Winput"></input>
       <button type="button" id="AddObstacle" onclick="addObstacle()">Add Obstacle</button>
       <button type="button" id="ShowCtx" onclick="drawMainScreen()">Show</button>
+      <button type="button" id="Reset" onclick="reset()">Reset</button>
+      <p></p>
+      <canvas id="mainscreen" width="500" height="500"></canvas>
       <script src="js/main.js"></script>
   </body>
 </html>
