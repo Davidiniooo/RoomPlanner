@@ -1,3 +1,21 @@
 canvas{
   background: #eee
 }
+.GetSize{
+  width: 80%;
+  padding: 12px 5px;
+  margin: 10px ;
+  display: inline-block;
+  border: 2px solid #ccc;
+  border-radius:10px;
+  background-color:white;
+
+}
+.GetSize:hover{
+  background-color:#e6e6e6;
+}
+#SizeinputDiv{
+  background-color: orange;
+  border-radius: 5px;
+  width: 25%
+}
