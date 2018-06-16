@@ -23,8 +23,30 @@ function addObstacle(){
   drawMainScreen();
 }
 function reset(){
-  for(var i = 0;i<obstacles.length;i++){
-    obstacles.pop();
-  }
+  obstacles = [];
   drawMainScreen();
+}
+function resize() {
+  roomSizeX=prompt("New width of the Room?","")
+  roomSizeY=prompt("New lengt of the Room?","")
+}
+function sortBySize(){
+  var tempArray = obstacles;
+  var sortedAray = [];
+  var biggestSize=0;
+  var indexOfBiggestSize=0;
+  var tempObstacle;
+
+  for (var i = 0; i < obstacles.length; i++) {
+    for (var i = 0; i < tempArray.length; i++) {
+      if(tempArray[i].height+tempArray[i].width>biggestSize)
+      {
+        biggestSize=tempArray[i].height+tempArray[i].width;
+        indexOfBiggestSize=i;
+      }
+    }
+    sortedAray.push(tempArray[indexOfBiggestSize]);
+    tempArray.splice(indexOfBiggestSize,1);
+  }
+  obstacles = sortedAray;
 }

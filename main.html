@@ -15,20 +15,18 @@
   <body>
       <h1>RoomPlanner 0.1</h1>
       <h4>Made by Davidiniooo</h4>
-      <div id="SizeinputDiv">
-        <div>
-          <input type="text" class="GetSize" id="Xinput" placeholder="X-Position"></input>
-          <input type="text" class="GetSize" id="Yinput" placeholder="Y-Position"></input>
+        <div id="SizeInputDiv">
+            <input type="text" class="SizeInput" id="Xinput" placeholder="X-Position"></input>
+            <input type="text" class="SizeInput" id="Yinput" placeholder="Y-Position"></input>
+            <input type="text" class="SizeInput" id="Hinput" placeholder="Height">    </input>
+            <input type="text" class="SizeInput" id="Winput" placeholder="Width">     </input>
         </div>
-        <div>
-          <input type="text" class="GetSize" id="Hinput" placeholder="Height"></input>
-          <input type="text" class="GetSize" id="Winput" placeholder="Width"></input>
+        <div id="ControlButtonsDiv">
+          <button type="button" class="ControlButton" id="AddObstacle" onclick="addObstacle()">   Add Obstacle  </button>
+          <button type="button" class="ControlButton" id="ShowCtx"     onclick="sortBySize()">    Sort          </button>
+          <button type="button" class="ControlButton" id="Reset"       onclick="reset()">         Reset         </button>
+          <button type="button" class="ControlButton" id="Resize"      onclick="resize()">        Resize        </button>
         </div>
-      </div>
-      <button type="button"                 id="AddObstacle" onclick="addObstacle()">Add Obstacle</button>
-      <button type="button"                 id="ShowCtx" onclick="drawMainScreen()">Show</button>
-      <button type="button"                 id="Reset" onclick="reset()">Reset</button>
-      <p></p>
       <canvas id="mainscreen" width="500" height="500"></canvas>
       <script src="js/main.js"></script>
   </body>
