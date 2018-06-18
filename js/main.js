@@ -1,5 +1,5 @@
 //Variables
-var IDnextObstacle=0;
+var IDnextObstacle = 0;
 var canvas = document.getElementById("mainscreen");
 var ctx = canvas.getContext("2d");
 
@@ -10,6 +10,7 @@ function drawMainScreen(){
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for(var i = 0;i<obstacles.length;i++){
     ctx.rect(obstacles[i].xPos,obstacles[i].yPos,obstacles[i].width,obstacles[i].height);
+    ctx.fillStyle = "orange";
   }
   ctx.fill();
   ctx.closePath();
@@ -29,26 +30,24 @@ function reset(){
   drawMainScreen();
 }
 function resize() {
-  roomSizeX=prompt("New width of the Room?","")
-  roomSizeY=prompt("New lengt of the Room?","")
+  roomSizeX = prompt("New width of the Room?","")
+  roomSizeY = prompt("New lengt of the Room?","")
 }
 function sortBySize(){
-  var tempArray = obstacles;
+  var tempArray = [];
+  tempArray = obstacles.slice();
   var sortedArray = [];
-  alert(obstacles.length);
-  for (var a = 0; a < obstacles.length; a++) {alert(a);}
 
   for (var i = 0; i < obstacles.length; i++) {
-    var indexOfBiggestSize=0;
-    var biggestSize=0;
+    var indexOfBiggestSize = 0;
+    var biggestSize = 0;
 
-    var arrayLength=tempArray.length;
-    alert(i);
+    var arrayLength = tempArray.length;
     for (var y = 0; y < arrayLength; y++) {
       if(tempArray[y].height*tempArray[y].width>=biggestSize)
       {
-        biggestSize=tempArray[y].height*tempArray[y].width;
-        indexOfBiggestSize=y;
+        biggestSize = tempArray[y].height*tempArray[y].width;
+        indexOfBiggestSize = y;
       }
     }
     sortedArray.push(tempArray[indexOfBiggestSize]);
@@ -59,9 +58,25 @@ function sortBySize(){
 }
 function listObstacles(){
   var lastXPos = 0;
-  for(i=0;i<obstacles.length;i++){
-    obstacles[i].xPos=lastXPos;
-    lastXPos +=obstacles[i].width;
+  var lastYPos = 0;
+
+  var highestYPos = obstacles[0];
+
+  for(i = 0;i<obstacles.length;i++){
+    if(lastXPos + obstacles[i].width <= canvas.width){
+      obstacles[i].xPos = lastXPos;
+      obstacles[i].yPos = lastYPos;
+      lastXPos += obstacles[i].width;
+      if(obstacles[i].height>highestYPos){
+        highestYPos=obstacles[i].height;
+      }
+    }
+    else {
+      lastYPos = highestYPos;
+      lastXPos = 0;
+      obstacles[i].xPos = lastXPos;
+      lastXPos += obstacles[i].width;
+    }
   }
   drawMainScreen();
 }
