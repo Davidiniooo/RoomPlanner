@@ -4,15 +4,20 @@ var canvas = document.getElementById("mainscreen");
 var ctx = canvas.getContext("2d");
 
 var obstacles = [];
+var colors = ["orange","yellow","green","red","gray","blue","black","pink"];
 
 function drawMainScreen(){
   ctx.beginPath();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   for(var i = 0;i<obstacles.length;i++){
+    ctx.beginPath();
     ctx.rect(obstacles[i].xPos,obstacles[i].yPos,obstacles[i].width,obstacles[i].height);
-    ctx.fillStyle = "orange";
+    ctx.fillStyle = colors[colors.length%i+1];
+    ctx.fill();
+    ctx.closePath();
   }
-  ctx.fill();
+
   ctx.closePath();
 }
 function addObstacle(){
@@ -31,7 +36,7 @@ function reset(){
 }
 function resize() {
   roomSizeX = prompt("New width of the Room?","")
-  roomSizeY = prompt("New lengt of the Room?","")
+  roomSizeY = prompt("New length of the Room?","")
 }
 function sortBySize(){
   var tempArray = [];
@@ -60,7 +65,7 @@ function listObstacles(){
   var lastXPos = 0;
   var lastYPos = 0;
 
-  var highestYPos = obstacles[0];
+  var highestYPos = obstacles[0].height;
 
   for(i = 0;i<obstacles.length;i++){
     if(lastXPos + obstacles[i].width <= canvas.width){
@@ -76,6 +81,7 @@ function listObstacles(){
       lastXPos = 0;
       obstacles[i].xPos = lastXPos;
       lastXPos += obstacles[i].width;
+      obstacles[i].yPos=lastYPos;
     }
   }
   drawMainScreen();
