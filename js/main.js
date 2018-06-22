@@ -43,10 +43,7 @@ function reset(){
   obstacles = [];
   drawMainScreen();
 }
-function resize() {
-  roomSizeX = prompt("New width of the Room?","")
-  roomSizeY = prompt("New length of the Room?","")
-}
+
 function sortBySize(){
   var tempArray = [];
   tempArray = obstacles.slice();
