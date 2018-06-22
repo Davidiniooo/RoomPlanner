@@ -1,10 +1,11 @@
 //Variables
-var IDnextObstacle = 0;
 var canvas = document.getElementById("mainscreen");
 var ctx = canvas.getContext("2d");
 
 var obstacles = [];
-var colors = ["orange","yellow","green","red","gray","blue","black","pink"];
+
+var colors = ["red","green","blue","yellow","gray","black"];
+var colorIndex=0;
 
 function drawMainScreen(){
   ctx.beginPath();
@@ -13,21 +14,29 @@ function drawMainScreen(){
   for(var i = 0;i<obstacles.length;i++){
     ctx.beginPath();
     ctx.rect(obstacles[i].xPos,obstacles[i].yPos,obstacles[i].width,obstacles[i].height);
-    ctx.fillStyle = colors[colors.length%i+1];
+    ctx.fillStyle = obstacles[i].color;
+
     ctx.fill();
     ctx.closePath();
   }
-
   ctx.closePath();
+}
+function setNextDrawColor(){
+  colorIndex++;
+  if(colorIndex>=colors.length){
+    colorIndex=0;
+  }
 }
 function addObstacle(){
   var x = document.getElementById("Xinput").value;
   var y = document.getElementById("Yinput").value;
   var w = document.getElementById("Winput").value;
   var h = document.getElementById("Hinput").value;
-  var tempObstacle = new Obstacle(x,y,w,h,IDnextObstacle);
+  var tempColor = colors[colorIndex];
+  var tempObstacle = new Obstacle(x,y,w,h,tempColor);
+  setNextDrawColor();
   obstacles.push(tempObstacle);
-  IDnextObstacle++;
+
   drawMainScreen();
 }
 function reset(){
@@ -61,6 +70,9 @@ function sortBySize(){
   obstacles = sortedArray;
   listObstacles();
 }
+function sortEfficient(){
+
+}
 function listObstacles(){
   var lastXPos = 0;
   var lastYPos = 0;
@@ -72,8 +84,8 @@ function listObstacles(){
       obstacles[i].xPos = lastXPos;
       obstacles[i].yPos = lastYPos;
       lastXPos += obstacles[i].width;
-      if(obstacles[i].height>highestYPos){
-        highestYPos=obstacles[i].height;
+      if(lastYPos+obstacles[i].height>highestYPos){
+        highestYPos=obstacles[i].yPos;
       }
     }
     else {
@@ -82,6 +94,7 @@ function listObstacles(){
       obstacles[i].xPos = lastXPos;
       lastXPos += obstacles[i].width;
       obstacles[i].yPos=lastYPos;
+    highestYPos=obstacles[i].yPos+obstacles[i].height;
     }
   }
   drawMainScreen();

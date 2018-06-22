@@ -1,5 +1,9 @@
 canvas{
-  background: #eee
+  background: #eee;
+  border: 3px solid #ccc;
+}
+canvas:hover{
+  border: 3px solid #000000;
 }
 .SizeInput{
   width: 100%;
@@ -38,7 +42,6 @@ canvas{
   margin: 10px;
   width:10%;
   float:left;
-
 }
 #ControlButtonsDiv{
   background-color: darkgrey;
@@ -47,5 +50,4 @@ canvas{
   margin: 10px;
   float: left;
   width:10%;
-
 }

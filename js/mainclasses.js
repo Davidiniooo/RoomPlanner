@@ -1,14 +1,9 @@
 class Obstacle {
-  constructor(x,y,w,h,id) {
-    this.xPos    = x;
-    this.yPos   = y;
-    this.height = h;
-    this.width  = w;
-    this.id     = id;
-    this.xPos=parseInt(this.xPos);
-    this.yPos=parseInt(this.yPos);
-    this.height=parseInt(this.height);
-    this.width=parseInt(this.width);
-
-  }
+  constructor(x,y,w,h,color) {
+    this.xPos   = parseInt(x);
+    this.yPos   = parseInt(y);
+    this.height = parseInt(w);
+    this.width  = parseInt(h);
+    this.color=color;
+    }
 }
