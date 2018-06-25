@@ -68,8 +68,16 @@ function sortBySize(){
   listObstacles();
 }
 function sortEfficient(){
-
+  var freeSpace = [];
+  var tempArray = [];
+  sortBySize(obstacles);
+  tempArray = obstacles.slice();
+  var sortedArray = [];
+  sortedArray.push(tempArray[0]);
+  sortedArray.splice(0,1);
+  
 }
+
 function listObstacles(){
   var lastXPos = 0;
   var lastYPos = 0;
