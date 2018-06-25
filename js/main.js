@@ -73,34 +73,53 @@ function sortEfficient(){
   sortBySize(obstacles);
   tempArray = obstacles.slice();
   var sortedArray = [];
+
+
   sortedArray.push(tempArray[0]);
+
+
   sortedArray.splice(0,1);
-  
+
+
+
 }
 
 function listObstacles(){
   var lastXPos = 0;
   var lastYPos = 0;
 
+  var deletedObjectsCounter = 0;
+
   var highestYPos = obstacles[0].height;
 
   for(i = 0;i<obstacles.length;i++){
-    if(lastXPos + obstacles[i].width <= canvas.width){
-      obstacles[i].xPos = lastXPos;
-      obstacles[i].yPos = lastYPos;
-      lastXPos += obstacles[i].width;
-      if(lastYPos+obstacles[i].height>highestYPos){
-        highestYPos=obstacles[i].yPos;
+    if(obstacles[i].width<=canvas.width&&obstacles[i].height<=canvas.height){
+      if(lastXPos + obstacles[i].width <= canvas.width){
+        obstacles[i].xPos = lastXPos;
+        obstacles[i].yPos = lastYPos;
+        lastXPos += obstacles[i].width;
+        if(lastYPos+obstacles[i].height>highestYPos){
+          highestYPos=obstacles[i].yPos;
+        }
+      }
+      else {
+        lastYPos = highestYPos;
+        lastXPos = 0;
+        obstacles[i].xPos = lastXPos;
+        lastXPos += obstacles[i].width;
+        obstacles[i].yPos=lastYPos;
+        highestYPos=obstacles[i].yPos+obstacles[i].height;
       }
     }
-    else {
-      lastYPos = highestYPos;
-      lastXPos = 0;
-      obstacles[i].xPos = lastXPos;
-      lastXPos += obstacles[i].width;
-      obstacles[i].yPos=lastYPos;
-    highestYPos=obstacles[i].yPos+obstacles[i].height;
+    else{
+      obstacles.splice(i,1);
+      deletedObjectsCounter++;
+      i--;
     }
   }
+  if(deletedObjectsCounter>0){
+    alert("Deleted "+deletedObjectsCounter+" Objects because they were to big!");
+  }
+
   drawMainScreen();
 }
